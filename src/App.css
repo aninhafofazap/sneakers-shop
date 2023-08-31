@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.menu-icon {
+    cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.cart {
+    cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.profile svg {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dark-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: hsl(0, 0%, 0%);
+    width: 100%;
+    height: 100vh;
+    opacity: 0.6;
+    display: none;
+}
+
+.menu-options {
+    position: absolute;
+    left: -270px;
+    top: 0;
+    background-color: hsl(0, 0%, 100%);
+    width: 250px;
+    height: calc(100vh - 20px);
+    color: hsl(0, 0%, 0%);
+    font-weight: 700;
+    font-size: 18px;
+    padding: 20px 0 0 20px;
+}
+
+.menu-options li {
+    margin: 25px 0;
+    cursor: pointer;
+}
+
+.icon-close {
+    margin: 0 0 25px 0;
+}
+
+.active-background {
+    display: block;
+}
+
+.menu-active {
+    left: 0;
 }
