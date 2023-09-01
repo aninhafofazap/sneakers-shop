@@ -60,10 +60,23 @@
     margin: 0 0 25px 0;
 }
 
+.list-item:hover {
+    color: hsl(26, 100%, 55%);
+}
+
 .active-background {
     display: block;
 }
 
 .menu-active {
     left: 0;
+}
+
+.shopp {
+    padding: 15px 0;
+
+}
+
+.shopp img {
+    width: 100%
 }

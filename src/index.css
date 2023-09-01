@@ -53,3 +53,19 @@
    border-collapse: collapse;
    border-spacing: 0;
  }
+
+
+ .slick-prev:before,
+ .slick-next:before {
+   color: hsl(223, 64%, 98%) !important;
+ }
+
+ .slick-prev {
+   left: 0 !important;
+   z-index: 999;
+ }
+
+ .slick-next {
+   right: 0 !important;
+   z-index: 999;
+ }
