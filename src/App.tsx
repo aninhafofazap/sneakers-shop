@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 import logo from "./assets/images/logo.svg";
 import menu from "./assets/images/icon-menu.svg";
-import cart from "./assets/images/icon-cart.svg";
 import { CgProfile } from "react-icons/cg";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { PiShoppingCartBold } from "react-icons/pi";
@@ -19,6 +18,7 @@ import product4 from "./assets/images/image-product-4.jpg";
 
 function App() {
   const [open, setClose] = useState(false);
+  const [amount, setAmount] = useState(1);
 
   const selectMenu = () => {
     setClose(!open);
@@ -32,6 +32,16 @@ function App() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+  };
+
+  const plusAmount = () => {
+    setAmount(amount + 1);
+  };
+
+  const minusAmount = () => {
+    if (amount > 1) {
+      setAmount(amount - 1);
+    }
   };
 
   return (
@@ -102,11 +112,11 @@ function App() {
         <p className="price-discount">$250,00</p>
       </div>
       <div className="buttons">
-        <button onClick={() => console.log("cliquei no menos")}>
+        <button onClick={minusAmount}>
           <FaMinus />
         </button>
-        <p className="button-description">1</p>
-        <button onClick={() => console.log("cliquei no mais")}>
+        <p className="button-description">{amount}</p>
+        <button onClick={plusAmount}>
           <FaPlus />
         </button>
       </div>
