@@ -19,6 +19,7 @@
 
 .cart {
     cursor: pointer;
+    font-size: 24px;
 }
 
 .profile svg {
@@ -36,6 +37,7 @@
     height: 100vh;
     opacity: 0.6;
     display: none;
+    z-index: 999;
 }
 
 .menu-options {
@@ -49,6 +51,7 @@
     font-weight: 700;
     font-size: 18px;
     padding: 20px 0 0 20px;
+    z-index: 9999;
 }
 
 .menu-options li {
@@ -79,4 +82,112 @@
 
 .shopp img {
     width: 100%
+}
+
+h2 {
+    text-transform: uppercase;
+    color: hsl(26, 100%, 55%);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 20px;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 30px;
+    color: hsl(0, 0%, 0%);
+    padding: 10px 20px;
+}
+
+p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 0 20px;
+    color: hsl(219, 9%, 45%);
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-value {
+    color: hsl(0, 0%, 0%);
+    font-weight: 700;
+    font-size: 24px;
+    padding: 30px 20px;
+    display: flex;
+}
+
+.price-discount {
+    padding: 30px 20px;
+    font-weight: 700;
+    text-decoration: line-through;
+}
+
+span {
+    border-radius: 5px;
+    color: hsl(26, 100%, 55%);
+    padding: 0 5px;
+    margin: 0 15px;
+    background-color: hsla(26, 100%, 55%, 0.2);
+    font-size: 14px;
+}
+
+.buttons {
+    background-color: hsl(223, 64%, 98%);
+    border-radius: 5px;
+    margin: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+}
+
+.buttons button {
+    border: none;
+    background-color: hsl(223, 64%, 98%);
+    cursor: pointer;
+}
+
+.buttons button svg {
+    color: hsl(26, 100%, 55%);
+    font-size: 18px;
+
+}
+
+.button-description {
+    color: hsl(0, 0%, 0%);
+    font-weight: 700;
+}
+
+.button-cart {
+    background-color: hsl(26, 100%, 55%);
+    margin: 10px 20px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-cart button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-description {
+    color: hsl(0, 0%, 100%);
+    font-weight: 700;
+    font-size: 18px;
+
+}
+
+.button-cart button svg {
+    color: hsl(0, 0%, 100%);
+    font-size: 18px;
 }

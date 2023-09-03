@@ -62,10 +62,10 @@
 
  .slick-prev {
    left: 0 !important;
-   z-index: 999;
+   z-index: 49;
  }
 
  .slick-next {
    right: 0 !important;
-   z-index: 999;
+   z-index: 49;
  }

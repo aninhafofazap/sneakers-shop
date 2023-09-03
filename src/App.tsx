@@ -9,6 +9,8 @@ import logo from "./assets/images/logo.svg";
 import menu from "./assets/images/icon-menu.svg";
 import cart from "./assets/images/icon-cart.svg";
 import { CgProfile } from "react-icons/cg";
+import { FaMinus, FaPlus } from "react-icons/fa";
+import { PiShoppingCartBold } from "react-icons/pi";
 import close from "./assets/images/icon-close.svg";
 import product from "./assets/images/image-product-1.jpg";
 import product2 from "./assets/images/image-product-2.jpg";
@@ -16,18 +18,13 @@ import product3 from "./assets/images/image-product-3.jpg";
 import product4 from "./assets/images/image-product-4.jpg";
 
 function App() {
-  // Usei o useState para criar um estado chamado "open", com o valor inicial de "false"
-  // depois criei o setClose pra poder atualizar o valor do estado
   const [open, setClose] = useState(false);
 
   const selectMenu = () => {
-    // criei a funçao pra poder chamar quando o icone do menu for clicado.
-    // o setClose e pra quando o valor for clicado inverter o valor de true pra false ou false pra true
     setClose(!open);
-    console.log("estou aqui");
   };
 
-  const productImages = [product, product2, product3, product4]; // Lista de imagens do produto
+  const productImages = [product, product2, product3, product4];
 
   const settings = {
     dots: false,
@@ -39,7 +36,6 @@ function App() {
 
   return (
     <div>
-      {/* navbar */}
       <div className="container">
         <nav className="navbar">
           <div className="menu-icon" onClick={selectMenu}>
@@ -49,7 +45,7 @@ function App() {
             <img src={logo} alt="Logo da loja" />
           </div>
           <div className="cart">
-            <img src={cart} alt="Carrinho da loja" />
+            <PiShoppingCartBold />
           </div>
           <div className="profile">
             <CgProfile />
@@ -87,6 +83,38 @@ function App() {
             </div>
           ))}
         </Slider>
+      </div>
+      <div>
+        <h2>Sneaker company</h2>
+      </div>
+      <div>
+        <h1>Fall Limited Edition Sneakers</h1>
+        <p>
+          These low-profile sneakers are your perfect casual wear companion.
+          Featuring a durable rubber outer sole, they’ll withstand everything
+          the weather can offer.
+        </p>
+      </div>
+      <div className="price">
+        <p className="price-value">
+          $125.00 <span>50%</span>
+        </p>
+        <p className="price-discount">$250,00</p>
+      </div>
+      <div className="buttons">
+        <button onClick={() => console.log("cliquei no menos")}>
+          <FaMinus />
+        </button>
+        <p className="button-description">1</p>
+        <button onClick={() => console.log("cliquei no mais")}>
+          <FaPlus />
+        </button>
+      </div>
+      <div className="button-cart">
+        <button>
+          <PiShoppingCartBold />
+        </button>
+        <p className="cart-description">Add to cart</p>
       </div>
     </div>
   );
