@@ -236,8 +236,7 @@ span {
     color: hsl(219, 9%, 45%);
 }
 
-
-
 .container-product svg {
     color: hsl(220, 14%, 75%);
+    cursor: pointer;
 }

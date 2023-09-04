@@ -69,6 +69,11 @@ function App() {
     ]);
   };
 
+  const handleRemoveCart = (productName: any) => {
+    const newCart = listCart.filter((product) => product.name !== productName);
+    setListCart(newCart);
+  };
+
   return (
     <div>
       <div className="container">
@@ -101,7 +106,12 @@ function App() {
                             `${amount} $${(amount * product.price).toFixed(2)}`}
                         </p>
                       </div>
-                      <FaTrashAlt />
+                      <button
+                        className="remove-product-button"
+                        onClick={() => handleRemoveCart(product.name)}
+                      >
+                        <FaTrashAlt />
+                      </button>
                     </div>
                     <div className="button-cart">
                       <button>
