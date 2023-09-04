@@ -240,3 +240,8 @@ span {
     color: hsl(220, 14%, 75%);
     cursor: pointer;
 }
+
+.remove-product-button {
+    background-color: hsl(223, 64%, 98%);
+    border: none;
+}

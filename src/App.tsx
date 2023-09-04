@@ -18,9 +18,11 @@ import product4 from "./assets/images/image-product-4.jpg";
 import productThumb from "./assets/images/image-product-1-thumbnail.jpg";
 
 interface IProduct {
+  id: number;
   image: string;
   name: string;
   price: number;
+  amount: number;
 }
 
 function App() {
@@ -55,22 +57,41 @@ function App() {
 
   const handleCartOpen = () => {
     setCartOpen(!cartOpen);
-    console.log("estou aqui", cartOpen);
   };
 
   const handleAddCart = () => {
-    setListCart([
-      ...listCart,
-      {
-        image: productThumb,
-        name: "Fall Limited Edition Sneakers",
-        price: 125.0,
-      },
-    ]);
+    const productId = 1;
+
+    const productExist = listCart.find((product) => product.id === productId);
+
+    if (productExist) {
+      const updatedCart = listCart.map((product) => {
+        if (product.id === productId) {
+          return {
+            ...product,
+            amount: amount,
+          };
+        }
+        return product;
+      });
+
+      setListCart(updatedCart);
+    } else {
+      setListCart([
+        ...listCart,
+        {
+          id: productId,
+          image: productThumb,
+          name: "Fall Limited Edition Sneakers",
+          price: 125.0,
+          amount: amount,
+        },
+      ]);
+    }
   };
 
-  const handleRemoveCart = (productName: any) => {
-    const newCart = listCart.filter((product) => product.name !== productName);
+  const handleRemoveCart = (productId: any) => {
+    const newCart = listCart.filter((product) => product.id !== productId);
     setListCart(newCart);
   };
 
@@ -88,11 +109,11 @@ function App() {
             <PiShoppingCartBold />
           </div>
 
-          {!cartOpen && (
+          {cartOpen && (
             <div className="cart-open">
               <h2 className="name-cart">Cart</h2>
               {listCart.length ? (
-                listCart.map((product: any) => (
+                listCart.map((product: IProduct) => (
                   <div>
                     <div key={product.name} className="container-product">
                       <div className="image-product">
@@ -103,12 +124,14 @@ function App() {
                         <p className="price-product">
                           ${product.price.toFixed(2)} x{" "}
                           {product.price > 1 &&
-                            `${amount} $${(amount * product.price).toFixed(2)}`}
+                            `${product.amount} $${(
+                              product.amount * product.price
+                            ).toFixed(2)}`}
                         </p>
                       </div>
                       <button
                         className="remove-product-button"
-                        onClick={() => handleRemoveCart(product.name)}
+                        onClick={() => handleRemoveCart(product.id)}
                       >
                         <FaTrashAlt />
                       </button>
