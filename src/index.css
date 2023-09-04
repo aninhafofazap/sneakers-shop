@@ -61,11 +61,11 @@
  }
 
  .slick-prev {
-   left: 0 !important;
+   left: 35px !important;
    z-index: 49;
  }
 
  .slick-next {
-   right: 0 !important;
+   right: 35px !important;
    z-index: 49;
  }

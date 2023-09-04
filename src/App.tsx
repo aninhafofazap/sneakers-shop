@@ -8,17 +8,26 @@ import "slick-carousel/slick/slick-theme.css";
 import logo from "./assets/images/logo.svg";
 import menu from "./assets/images/icon-menu.svg";
 import { CgProfile } from "react-icons/cg";
-import { FaMinus, FaPlus } from "react-icons/fa";
+import { FaMinus, FaPlus, FaTrashAlt } from "react-icons/fa";
 import { PiShoppingCartBold } from "react-icons/pi";
 import close from "./assets/images/icon-close.svg";
 import product from "./assets/images/image-product-1.jpg";
 import product2 from "./assets/images/image-product-2.jpg";
 import product3 from "./assets/images/image-product-3.jpg";
 import product4 from "./assets/images/image-product-4.jpg";
+import productThumb from "./assets/images/image-product-1-thumbnail.jpg";
+
+interface IProduct {
+  image: string;
+  name: string;
+  price: number;
+}
 
 function App() {
   const [open, setClose] = useState(false);
   const [amount, setAmount] = useState(1);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [listCart, setListCart] = useState<IProduct[]>([]);
 
   const selectMenu = () => {
     setClose(!open);
@@ -44,6 +53,22 @@ function App() {
     }
   };
 
+  const handleCartOpen = () => {
+    setCartOpen(!cartOpen);
+    console.log("estou aqui", cartOpen);
+  };
+
+  const handleAddCart = () => {
+    setListCart([
+      ...listCart,
+      {
+        image: productThumb,
+        name: "Fall Limited Edition Sneakers",
+        price: 125.0,
+      },
+    ]);
+  };
+
   return (
     <div>
       <div className="container">
@@ -54,9 +79,43 @@ function App() {
           <div className="logo">
             <img src={logo} alt="Logo da loja" />
           </div>
-          <div className="cart">
+          <div className="cart" onClick={handleCartOpen}>
             <PiShoppingCartBold />
           </div>
+
+          {!cartOpen && (
+            <div className="cart-open">
+              <h2 className="name-cart">Cart</h2>
+              {listCart.length ? (
+                listCart.map((product: any) => (
+                  <div>
+                    <div key={product.name} className="container-product">
+                      <div className="image-product">
+                        <img src={product.image} alt={product.name} />
+                      </div>
+                      <div>
+                        <p className="name-product">{product.name}</p>
+                        <p className="price-product">
+                          ${product.price.toFixed(2)} x{" "}
+                          {product.price > 1 &&
+                            `${amount} $${(amount * product.price).toFixed(2)}`}
+                        </p>
+                      </div>
+                      <FaTrashAlt />
+                    </div>
+                    <div className="button-cart">
+                      <button>
+                        <p className="cart-description">Checkout</p>
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="description-cart">Your cart is empty.</p>
+              )}
+            </div>
+          )}
+
           <div className="profile">
             <CgProfile />
           </div>
@@ -95,7 +154,7 @@ function App() {
         </Slider>
       </div>
       <div>
-        <h2>Sneaker company</h2>
+        <h2 className="product-brand">Sneaker company</h2>
       </div>
       <div>
         <h1>Fall Limited Edition Sneakers</h1>
@@ -120,7 +179,7 @@ function App() {
           <FaPlus />
         </button>
       </div>
-      <div className="button-cart">
+      <div className="button-cart" onClick={handleAddCart}>
         <button>
           <PiShoppingCartBold />
         </button>

@@ -84,7 +84,7 @@
     width: 100%
 }
 
-h2 {
+.product-brand {
     text-transform: uppercase;
     color: hsl(26, 100%, 55%);
     font-size: 12px;
@@ -132,7 +132,7 @@ span {
     color: hsl(26, 100%, 55%);
     padding: 0 5px;
     margin: 0 15px;
-    background-color: hsla(26, 100%, 55%, 0.2);
+    background-color: hsl(25, 100%, 94%);
     font-size: 14px;
 }
 
@@ -190,4 +190,54 @@ span {
 .button-cart button svg {
     color: hsl(0, 0%, 100%);
     font-size: 18px;
+}
+
+.cart-open {
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 10px;
+    position: absolute;
+    bottom: -275px;
+    z-index: 100;
+    width: calc(100% - 20px);
+    left: 0;
+    margin: 0 10px;
+    height: 247px;
+}
+
+.name-cart {
+    border-bottom: 1px solid hsl(220, 14%, 90%);
+    color: hsl(0, 0%, 0%);
+    padding: 25px;
+    font-weight: 700;
+}
+
+.description-cart {
+    font-weight: 700;
+    text-align: center;
+    padding: 85px 0;
+    color: hsl(219, 9%, 50%);
+}
+
+.container-product {
+    display: flex;
+    align-items: center;
+}
+
+.image-product {
+    padding: 10px 0 0 20px;
+}
+
+.image-product img {
+    width: 45px;
+    border-radius: 5px;
+}
+
+.name-product {
+    color: hsl(219, 9%, 45%);
+}
+
+
+
+.container-product svg {
+    color: hsl(220, 14%, 75%);
 }
