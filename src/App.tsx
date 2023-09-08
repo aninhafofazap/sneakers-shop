@@ -16,6 +16,9 @@ import product2 from "./assets/images/image-product-2.jpg";
 import product3 from "./assets/images/image-product-3.jpg";
 import product4 from "./assets/images/image-product-4.jpg";
 import productThumb from "./assets/images/image-product-1-thumbnail.jpg";
+import productThumb2 from "./assets/images/image-product-2-thumbnail.jpg";
+import productThumb3 from "./assets/images/image-product-3-thumbnail.jpg";
+import productThumb4 from "./assets/images/image-product-4-thumbnail.jpg";
 
 interface IProduct {
   id: number;
@@ -30,12 +33,19 @@ function App() {
   const [amount, setAmount] = useState(1);
   const [cartOpen, setCartOpen] = useState(false);
   const [listCart, setListCart] = useState<IProduct[]>([]);
+  const [selectedImage, setSelectedImage] = useState(product);
 
   const selectMenu = () => {
     setClose(!open);
   };
 
   const productImages = [product, product2, product3, product4];
+  const productImagesThumb = [
+    productThumb,
+    productThumb2,
+    productThumb3,
+    productThumb4,
+  ];
 
   const settings = {
     dots: false,
@@ -44,6 +54,22 @@ function App() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
+  const desktopSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
+
+  // Função para lidar com o clique nas miniaturas e atualizar a imagem maior
+  const handleThumbnailClick = (image: string) => {
+    setSelectedImage(image);
+  };
+
+  // Verifica se a tela é menor que 960px (dispositivo móvel)
+  const isMobile = window.innerWidth < 960;
 
   const plusAmount = () => {
     setAmount(amount + 1);
@@ -104,9 +130,20 @@ function App() {
           </div>
           <div className="logo">
             <img src={logo} alt="Logo da loja" />
+            <ul>
+              <li className="list-item-desktop">Collections</li>
+              <li className="list-item-desktop">Men</li>
+              <li className="list-item-desktop">Women</li>
+              <li className="list-item-desktop">About</li>
+              <li className="list-item-desktop">Contact</li>
+            </ul>
           </div>
-          <div className="cart" onClick={handleCartOpen}>
-            <PiShoppingCartBold />
+
+          <div className="cart">
+            <PiShoppingCartBold onClick={handleCartOpen} />
+            <div className="profile">
+              <CgProfile />
+            </div>
           </div>
 
           {cartOpen && (
@@ -148,10 +185,6 @@ function App() {
               )}
             </div>
           )}
-
-          <div className="profile">
-            <CgProfile />
-          </div>
         </nav>
 
         {open && (
@@ -177,46 +210,53 @@ function App() {
           </>
         )}
       </div>
-      <div className="shopp">
-        <Slider {...settings}>
-          {productImages.map((image, index) => (
-            <div key={index}>
-              <img src={image} alt="Produto" />
+      <div className="container-shopp">
+        <div className="shopp-items">
+          <div className="shopp">
+            <Slider {...settings}>
+              {productImages.map((image, index) => (
+                <div key={index}>
+                  <img src={image} alt="Produto" />
+                </div>
+              ))}
+            </Slider>
+          </div>
+
+          <div>
+            <div>
+              <h2 className="product-brand">Sneaker company</h2>
             </div>
-          ))}
-        </Slider>
-      </div>
-      <div>
-        <h2 className="product-brand">Sneaker company</h2>
-      </div>
-      <div>
-        <h1>Fall Limited Edition Sneakers</h1>
-        <p>
-          These low-profile sneakers are your perfect casual wear companion.
-          Featuring a durable rubber outer sole, they’ll withstand everything
-          the weather can offer.
-        </p>
-      </div>
-      <div className="price">
-        <p className="price-value">
-          $125.00 <span>50%</span>
-        </p>
-        <p className="price-discount">$250,00</p>
-      </div>
-      <div className="buttons">
-        <button onClick={minusAmount}>
-          <FaMinus />
-        </button>
-        <p className="button-description">{amount}</p>
-        <button onClick={plusAmount}>
-          <FaPlus />
-        </button>
-      </div>
-      <div className="button-cart" onClick={handleAddCart}>
-        <button>
-          <PiShoppingCartBold />
-        </button>
-        <p className="cart-description">Add to cart</p>
+            <div>
+              <h1>Fall Limited Edition Sneakers</h1>
+              <p>
+                These low-profile sneakers are your perfect casual wear
+                companion. Featuring a durable rubber outer sole, they’ll
+                withstand everything the weather can offer.
+              </p>
+            </div>
+            <div className="price">
+              <p className="price-value">
+                $125.00 <span>50%</span>
+              </p>
+              <p className="price-discount">$250,00</p>
+            </div>
+            <div className="buttons">
+              <button onClick={minusAmount}>
+                <FaMinus />
+              </button>
+              <p className="button-description">{amount}</p>
+              <button onClick={plusAmount}>
+                <FaPlus />
+              </button>
+            </div>
+            <div className="button-cart" onClick={handleAddCart}>
+              <button>
+                <PiShoppingCartBold />
+              </button>
+              <p className="cart-description">Add to cart</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
