@@ -325,4 +325,17 @@ span {
         border-radius: 10px;
     }
 
+    .thumbnails {
+        width: 100%;
+        max-width: 470px;
+        grid-gap: 20px;
+        margin-top: 2rem;
+        /* padding: 0 0.7rem; */
+    }
+
+    .thumbnails img {
+        width: 90px;
+        border-radius: 7px;
+        cursor: pointer;
+    }
 }

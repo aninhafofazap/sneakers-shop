@@ -70,7 +70,7 @@
    z-index: 49;
  }
 
- /* @media screen and (min-width: 960px) {
+ @media screen and (min-width: 960px) {
 
    .slick-prev {
      display: none !important;
@@ -79,4 +79,4 @@
    .slick-next {
      display: none !important;
    }
- } */
+ }

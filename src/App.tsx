@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -34,6 +34,15 @@ function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [listCart, setListCart] = useState<IProduct[]>([]);
   const [selectedImage, setSelectedImage] = useState(product);
+  const [nav1, setNav1] = useState<any>(null);
+  const [nav2, setNav2] = useState<any>(null);
+  const slider1 = useRef(null);
+  const slider2 = useRef(null);
+
+  useEffect(() => {
+    setNav1(slider1.current);
+    setNav2(slider2.current);
+  }, []);
 
   const selectMenu = () => {
     setClose(!open);
@@ -55,6 +64,12 @@ function App() {
     slidesToScroll: 1,
   };
 
+  const thumbnailSettings = {
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
+
   const desktopSettings = {
     dots: false,
     infinite: true,
@@ -63,13 +78,27 @@ function App() {
     slidesToScroll: 1,
   };
 
-  // Função para lidar com o clique nas miniaturas e atualizar a imagem maior
   const handleThumbnailClick = (image: string) => {
     setSelectedImage(image);
   };
 
-  // Verifica se a tela é menor que 960px (dispositivo móvel)
-  const isMobile = window.innerWidth < 960;
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 960 && !isMobile) {
+        setIsMobile(true);
+      } else if (window.innerWidth >= 960 && isMobile) {
+        setIsMobile(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobile]);
 
   const plusAmount = () => {
     setAmount(amount + 1);
@@ -212,14 +241,33 @@ function App() {
       </div>
       <div className="container-shopp">
         <div className="shopp-items">
-          <div className="shopp">
-            <Slider {...settings}>
-              {productImages.map((image, index) => (
-                <div key={index}>
-                  <img src={image} alt="Produto" />
-                </div>
-              ))}
-            </Slider>
+          <div>
+            <div className="shopp">
+              <Slider {...settings} asNavFor={nav2} ref={slider1}>
+                {productImages.map((image, index) => (
+                  <div key={index}>
+                    <img src={image} alt="Produto" />
+                  </div>
+                ))}
+              </Slider>
+            </div>
+            {!isMobile && (
+              <div className="thumbnails">
+                <Slider
+                  {...thumbnailSettings}
+                  asNavFor={nav1}
+                  ref={slider2}
+                  swipeToSlide={true}
+                  focusOnSelect={true}
+                >
+                  {productImagesThumb.map((image) => (
+                    <div key={image}>
+                      <img src={image} alt={`${image}`} />
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+            )}
           </div>
 
           <div>
