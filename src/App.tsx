@@ -34,6 +34,7 @@ function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [listCart, setListCart] = useState<IProduct[]>([]);
   const [selectedImage, setSelectedImage] = useState(product);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 960);
   const [nav1, setNav1] = useState<any>(null);
   const [nav2, setNav2] = useState<any>(null);
   const slider1 = useRef(null);
@@ -42,6 +43,23 @@ function App() {
   useEffect(() => {
     setNav1(slider1.current);
     setNav2(slider2.current);
+  }, []);
+
+  useEffect(() => {
+    setNav1(slider1.current);
+    setNav2(slider2.current);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 960);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const selectMenu = () => {
@@ -81,24 +99,6 @@ function App() {
   const handleThumbnailClick = (image: string) => {
     setSelectedImage(image);
   };
-
-  const [isMobile, setIsMobile] = useState(true);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 960 && !isMobile) {
-        setIsMobile(true);
-      } else if (window.innerWidth >= 960 && isMobile) {
-        setIsMobile(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isMobile]);
 
   const plusAmount = () => {
     setAmount(amount + 1);
@@ -215,7 +215,6 @@ function App() {
             </div>
           )}
         </nav>
-
         {open && (
           <>
             <div
@@ -269,7 +268,6 @@ function App() {
               </div>
             )}
           </div>
-
           <div>
             <div>
               <h2 className="product-brand">Sneaker company</h2>
@@ -288,20 +286,22 @@ function App() {
               </p>
               <p className="price-discount">$250,00</p>
             </div>
-            <div className="buttons">
-              <button onClick={minusAmount}>
-                <FaMinus />
-              </button>
-              <p className="button-description">{amount}</p>
-              <button onClick={plusAmount}>
-                <FaPlus />
-              </button>
-            </div>
-            <div className="button-cart" onClick={handleAddCart}>
-              <button>
-                <PiShoppingCartBold />
-              </button>
-              <p className="cart-description">Add to cart</p>
+            <div className="buttons-carts">
+              <div className="buttons">
+                <button onClick={minusAmount} className="small-button">
+                  <FaMinus />
+                </button>
+                <p className="button-description">{amount}</p>
+                <button onClick={plusAmount} className="small-button">
+                  <FaPlus />
+                </button>
+              </div>
+              <div className="button-cart" onClick={handleAddCart}>
+                <button className="small-button">
+                  <PiShoppingCartBold />
+                </button>
+                <p className="cart-description">Add to cart</p>
+              </div>
             </div>
           </div>
         </div>
