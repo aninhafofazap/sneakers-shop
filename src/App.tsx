@@ -189,10 +189,14 @@ function App() {
                         <p className="name-product">{product.name}</p>
                         <p className="price-product">
                           ${product.price.toFixed(2)} x{" "}
-                          {product.price > 1 &&
-                            `${product.amount} $${(
-                              product.amount * product.price
-                            ).toFixed(2)}`}
+                          {product.price > 1 && (
+                            <>
+                              {product.amount}
+                              <span className="negrito">
+                                ${(product.amount * product.price).toFixed(2)}
+                              </span>
+                            </>
+                          )}
                         </p>
                       </div>
                       <button
@@ -268,7 +272,7 @@ function App() {
               </div>
             )}
           </div>
-          <div>
+          <div className="product-container">
             <div>
               <h2 className="product-brand">Sneaker company</h2>
             </div>

@@ -134,6 +134,7 @@ p {
     padding: 30px 20px;
     font-weight: 700;
     text-decoration: line-through;
+    color: hsl(220, 14%, 75%);
 }
 
 span {
@@ -213,6 +214,13 @@ span {
     height: 247px;
 }
 
+.negrito {
+    background: transparent;
+    color: hsl(0, 0%, 0%);
+    font-weight: 700;
+    font-size: 16px
+}
+
 .name-cart {
     border-bottom: 1px solid hsl(220, 14%, 90%);
     color: hsl(0, 0%, 0%);
@@ -253,6 +261,7 @@ span {
 .remove-product-button {
     background-color: hsl(223, 64%, 98%);
     border: none;
+    background: transparent;
 }
 
 
@@ -354,10 +363,29 @@ span {
 
     .button-cart {
         width: 245px;
+
     }
 
     .buttons button svg {
         font-size: 12px;
         padding: 0 15px;
+    }
+
+    .product-container {
+        width: 475px;
+
+        padding: 50px 75px;
+    }
+
+    .price {
+        display: initial;
+    }
+
+    .price-value {
+        padding-bottom: 0;
+    }
+
+    .price-discount {
+        padding-top: 0;
     }
 }
